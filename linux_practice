@@ -1,0 +1,69 @@
+
+https://devopscube.com/mount-ebs-volume-ec2-instance/
+
+
+see all the users present in linux server ----> sudo cat /etc/passwd
+
+see all the encrypted passwords present in linux server ---> sudo cat /etc/shadow
+
+you can see users assigned to which group ---> sudo cat /etc/group
+
+Let us create a new user named vivek using the useradd command on Ubuntu:
+==========================================================================
+
+In ubuntu linux server while creating user with any name the user home directory not coming by default
+
+For that:
+=========
+
+ sudo useradd -s /bin/bash -d /home/hareesh/ -m -G sudo hareesh
+ 
+ 
+-s /bin/bash – Set /bin/bash as login shell of the new account
+-d /home/vivek/ – Set /home/vivek/ as home directory of the new Ubuntu account
+-m – Create the user’s home directory
+-G sudo – Make sure vivek user can sudo i.e. give admin access to the new account
+
+
+generate ssh keys in your gitbash
+
+ssh-keygen
+
+it can create id_rsa id_rsa.pub known_hosts files
+
+In linux server in your home directory you can do following steps
+================================================================
+
+create .ssh directory
+
+change the permessions 
+
+chmod 700 .ssh
+
+create one file in .ssh directory with authorized_keys
+
+vi .ssh/authorized_keys
+
+paste id_rsa.pub file content here
+
+change permessions for that file
+
+chmod 600 .ssh/authorized_keys
+
+restart your server
+
+sudo service /etc/init.d/ssh restart
+
+now you can login with your name into linux server
+
+ssh -i "pem.pem" hareesh@ec2-18-119-98-105.us-east-2.compute.amazonaws.com
+
+
+sudo deluser --remove-home hareesh
+
+ps aux | grep 1948
+
+killall -TERM -u hareesh
+
+userdel hareesh
+
